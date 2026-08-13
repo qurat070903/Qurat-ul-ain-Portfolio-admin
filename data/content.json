@@ -1,0 +1,109 @@
+{
+  "hero": {
+    "eyebrow": "HI! I AM QURAT-UL-AIN",
+    "titleLine1": "SOFTWARE",
+    "titleLine2": "ENGINEER",
+    "subtext": "I'm skilled in developing mobile and web applications, database management and creating user-friendly interfaces. Passionate about learning new technologies and building practical software solutions."
+  },
+  "about": {
+    "paragraph1": "I'm a Software Engineering student at COMSATS University Islamabad, Wah Campus. I build across mobile, web, and machine learning, from Flutter apps to Laravel backends to AI-driven features.",
+    "paragraph2": "I enjoy exploring ideas, solving problems, and transforming concepts into clear, functional outcomes. Consistency, attention to detail, and continuous learning are what I try to bring to every project.",
+    "stats": [
+      {
+        "num": "5+",
+        "label": "PROJECTS BUILT"
+      },
+      {
+        "num": "3",
+        "label": "INTERNSHIPS"
+      }
+    ]
+  },
+  "experience": [
+    {
+      "role": "ML/AI Intern",
+      "org": "Pakistan Ordnance Factory (POF)",
+      "dateStart": "JUL 21, 2026",
+      "dateEnd": "",
+      "current": true,
+      "bullets": [
+        "Working on machine learning and AI-focused tasks as part of an ongoing internship.",
+        "Building foundational experience in applied ML alongside existing software development skills."
+      ]
+    },
+    {
+      "role": "UI/UX Design Intern",
+      "org": "CodeAlpha",
+      "dateStart": "APR 2026",
+      "dateEnd": "MAY 2026",
+      "current": false,
+      "bullets": [
+        "Designed wireframes and interactive prototypes using Figma.",
+        "Improved user experience through responsive and accessible designs."
+      ]
+    },
+    {
+      "role": "Software Intern",
+      "org": "Ministry of Defence",
+      "dateStart": "JUL 2025",
+      "dateEnd": "AUG 2025",
+      "current": false,
+      "bullets": [
+        "Assisted in software development and documentation tasks.",
+        "Participated in software testing and quality assurance activities."
+      ]
+    }
+  ],
+  "academics": [
+    {
+      "role": "Matriculation, Science",
+      "org": "Quality School",
+      "dateStart": "2018",
+      "dateEnd": "2020",
+      "current": false
+    },
+    {
+      "role": "Intermediate, Pre-Engineering",
+      "org": "Quality College",
+      "dateStart": "2020",
+      "dateEnd": "2022",
+      "current": false
+    },
+    {
+      "role": "BS Software Engineering",
+      "org": "COMSATS University Islamabad",
+      "dateStart": "2023",
+      "dateEnd": "2027",
+      "current": true
+    }
+  ],
+  "leadership": [
+    {
+      "role": "Treasurer",
+      "org": "ACM CUI Wah Chapter",
+      "dateStart": "JUN 2026",
+      "dateEnd": "",
+      "current": true
+    },
+    {
+      "role": "Coordinator",
+      "org": "ACM Decor Team",
+      "dateStart": "DEC 2025",
+      "dateEnd": "MAY 2026",
+      "current": false
+    },
+    {
+      "role": "Team Lead",
+      "org": "ACM Decor Team",
+      "dateStart": "MAY 2025",
+      "dateEnd": "DEC 2025",
+      "current": false
+    }
+  ],
+  "contact": {
+    "email": "qurat070903@gmail.com",
+    "phone": "+92 309 0146229",
+    "linkedin": "qurat-ul-ain-0a8715304",
+    "github": "qurat070903"
+  }
+}
