@@ -59,9 +59,7 @@ Click **Save Changes** at the bottom — it writes directly to `data/content.jso
 Put your photo at `public/images/profile-cutout.png` (a transparent-background cutout works best with the current hero styling — see below). The path is already wired into `index.html`.
 
 ## Adding certificates
-
-1. Put certificate images in `public/images/certificates/`
-2. In `public/index.html`, find the `<!-- CERTIFICATES -->` section and follow the pattern of the existing `.cert-card` blocks — swap the placeholder `<svg>` for an `<img src="images/certificates/yourfile.jpg">` and fill in the title/issuer.
+Upload your certificates by clicking add certificate on portfolio website
 
 ## Customizing the styling
 
