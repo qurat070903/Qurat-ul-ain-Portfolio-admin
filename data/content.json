@@ -102,9 +102,7 @@
 
     
   ],
-  "certificates": [
-  { "image": "images/certificates/certificate-1.jpg", "title": "Certificate title", "org": "Issuing organization" }
-],
+  
   "contact": {
     "email": "qurat070903@gmail.com",
     "phone": "+92 309 0146229",

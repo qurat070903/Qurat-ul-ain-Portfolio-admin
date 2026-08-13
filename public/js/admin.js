@@ -8,7 +8,6 @@ const loginBtn = document.getElementById('loginBtn');
 const loginError = document.getElementById('loginError');
 const saveBtn = document.getElementById('saveBtn');
 const saveStatus = document.getElementById('saveStatus');
-renderCertificates();
 
 function escapeAttr(str) {
   return String(str ?? '').replace(/"/g, '&quot;');
@@ -212,92 +211,6 @@ document.getElementById('addLeadership').addEventListener('click', () => {
   renderRepeatable('leadership', 'leadershipRepeat', false);
 });
 
-// ---------- Certificates ----------
-function renderCertificates() {
-  const el = document.getElementById('certificatesRepeat');
-  const items = content.certificates || [];
-
-  el.innerHTML = items.map((item, i) => `
-    <div class="repeat-item" data-index="${i}">
-      <button type="button" class="btn-small btn-remove" data-action="remove-cert" data-index="${i}">Remove</button>
-      <div class="item-num">#${i + 1}</div>
-
-      <div class="field">
-        <label>Certificate image</label>
-        <div style="display:flex; align-items:center; gap:14px; margin-bottom:6px;">
-          ${item.image ? `<img src="${escapeAttr(item.image)}" alt="" style="width:80px;height:60px;object-fit:cover;border-radius:6px;border:1px solid var(--line-light);">` : ''}
-          <input type="file" accept="image/png, image/jpeg, image/webp" data-action="cert-file" data-index="${i}">
-        </div>
-        <span class="cert-upload-status" data-index="${i}" style="font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--ink-faint);"></span>
-      </div>
-
-      <div class="row-2">
-        <div class="field">
-          <label>Title</label>
-          <input type="text" value="${escapeAttr(item.title)}" data-field="title" data-index="${i}">
-        </div>
-        <div class="field">
-          <label>Issuing organization</label>
-          <input type="text" value="${escapeAttr(item.org)}" data-field="org" data-index="${i}">
-        </div>
-      </div>
-    </div>
-  `).join('');
-
-  el.querySelectorAll('input[type=text]').forEach(input => {
-    input.addEventListener('input', (e) => {
-      const i = Number(e.target.dataset.index);
-      const field = e.target.dataset.field;
-      content.certificates[i][field] = e.target.value;
-    });
-  });
-
-  el.querySelectorAll('[data-action="remove-cert"]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const i = Number(e.target.dataset.index);
-      content.certificates.splice(i, 1);
-      renderCertificates();
-    });
-  });
-
-  el.querySelectorAll('[data-action="cert-file"]').forEach(input => {
-    input.addEventListener('change', async (e) => {
-      const i = Number(e.target.dataset.index);
-      const file = e.target.files[0];
-      if (!file) return;
-
-      const statusEl = el.querySelector(`.cert-upload-status[data-index="${i}"]`);
-      statusEl.textContent = 'Uploading…';
-
-      const formData = new FormData();
-      formData.append('image', file);
-
-      try {
-        const res = await fetch('/api/admin/upload-certificate', {
-          method: 'POST',
-          headers: { 'X-Admin-Password': adminPassword },
-          body: formData
-        });
-        const data = await res.json();
-        if (res.ok) {
-          content.certificates[i].image = data.path;
-          statusEl.textContent = 'Uploaded ✓';
-          renderCertificates();
-        } else {
-          statusEl.textContent = data.error || 'Upload failed.';
-        }
-      } catch (err) {
-        statusEl.textContent = 'Network error — upload failed.';
-      }
-    });
-  });
-}
-
-document.getElementById('addCertificate').addEventListener('click', () => {
-  content.certificates = content.certificates || [];
-  content.certificates.push({ image: '', title: 'New Certificate', org: 'Issuing organization' });
-  renderCertificates();
-});
 // ---------- Save ----------
 saveBtn.addEventListener('click', async () => {
   // Pull simple fields back into content before saving
