@@ -74,6 +74,19 @@
   .save-status.error{ color:var(--error); }
 
   #adminApp{ display:none; }
+  .cert-preview{
+    width:100%; max-width:160px; aspect-ratio:4/3; object-fit:cover;
+    border-radius:8px; border:1px solid var(--line-light); margin-bottom:10px; display:block;
+  }
+  .cert-preview-empty{
+    width:100%; max-width:160px; aspect-ratio:4/3; border-radius:8px;
+    border:1px dashed var(--line-light); margin-bottom:10px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink-faint); font-family:'JetBrains Mono', monospace; font-size:11px; text-align:center; padding:8px;
+  }
+  .upload-status{ font-family:'JetBrains Mono', monospace; font-size:12px; margin-top:6px; }
+  .upload-status.success{ color:var(--teal, #17A398); }
+  .upload-status.error{ color:var(--error); }
 </style>
 </head>
 <body>
@@ -155,11 +168,11 @@
     </div>
 
     <!-- CERTIFICATES -->
-<div class="admin-card">
-  <h2>Certificates</h2>
-  <div id="certificatesRepeat"></div>
-  <button class="btn-small btn-add" id="addCertificate" type="button">+ Add certificate</button>
-</div>
+    <div class="admin-card">
+      <h2>Certificates</h2>
+      <div id="certificatesRepeat"></div>
+      <button class="btn-small btn-add" id="addCertificate" type="button">+ Add certificate</button>
+    </div>
 
     <!-- CONTACT -->
     <div class="admin-card">

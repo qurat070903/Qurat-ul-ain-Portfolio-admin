@@ -82,6 +82,27 @@ function renderContent(data) {
     }).join('');
   }
 
+  // Certificates
+  const certGrid = document.getElementById('certGrid');
+  if (certGrid) {
+    const certs = data.certificates || [];
+    if (certs.length === 0) {
+      certGrid.innerHTML = `<p style="color:var(--ink-faint); font-family:'JetBrains Mono', monospace; font-size:13px; grid-column:1/-1; text-align:center;">No certificates added yet.</p>`;
+    } else {
+      certGrid.innerHTML = certs.map(c => `
+        <div class="cert-card">
+          <div class="cert-thumb">
+            <img src="images/certificates/${escapeHtml(c.image)}" alt="${escapeHtml(c.title)}">
+          </div>
+          <div class="cert-body">
+            <h3>${escapeHtml(c.title)}</h3>
+            <div class="issuer">${escapeHtml(c.issuer)}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+  
   // Contact
   const contactLinks = document.getElementById('contactLinks');
   if (contactLinks) {

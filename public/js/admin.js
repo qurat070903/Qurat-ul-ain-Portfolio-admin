@@ -84,6 +84,7 @@ function populateForm() {
   renderRepeatable('experience', 'experienceRepeat', true);
   renderRepeatable('academics', 'academicsRepeat', false);
   renderRepeatable('leadership', 'leadershipRepeat', false);
+  renderCertificates();
 }
 
 // ---------- Stats (About section) ----------
@@ -210,6 +211,96 @@ document.getElementById('addLeadership').addEventListener('click', () => {
   content.leadership.unshift({ role: 'New Role', org: 'Organization', dateStart: '', dateEnd: '', current: false });
   renderRepeatable('leadership', 'leadershipRepeat', false);
 });
+
+// ---------- Certificates ----------
+function renderCertificates() {
+  const el = document.getElementById('certificatesRepeat');
+  const certs = content.certificates || [];
+
+  el.innerHTML = certs.map((c, i) => `
+    <div class="repeat-item" data-index="${i}">
+      <button type="button" class="btn-small btn-remove" data-action="remove-cert" data-index="${i}">Remove</button>
+      <div class="item-num">#${i + 1}</div>
+      ${c.image
+        ? `<img class="cert-preview" src="images/certificates/${escapeAttr(c.image)}" alt="">`
+        : `<div class="cert-preview-empty">No image uploaded yet</div>`
+      }
+      <div class="field">
+        <label>Certificate image</label>
+        <input type="file" accept="image/png,image/jpeg,image/webp,image/gif" data-action="upload-cert" data-index="${i}">
+        <div class="upload-status" data-status-index="${i}"></div>
+      </div>
+      <div class="row-2">
+        <div class="field">
+          <label>Certificate title</label>
+          <input type="text" value="${escapeAttr(c.title)}" data-cert-field="title" data-index="${i}">
+        </div>
+        <div class="field">
+          <label>Issuing organization</label>
+          <input type="text" value="${escapeAttr(c.issuer)}" data-cert-field="issuer" data-index="${i}">
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  el.querySelectorAll('input[type=text]').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const i = Number(e.target.dataset.index);
+      const field = e.target.dataset.certField;
+      content.certificates[i][field] = e.target.value;
+    });
+  });
+
+  el.querySelectorAll('[data-action="remove-cert"]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const i = Number(e.target.dataset.index);
+      content.certificates.splice(i, 1);
+      renderCertificates();
+    });
+  });
+
+  el.querySelectorAll('[data-action="upload-cert"]').forEach(input => {
+    input.addEventListener('change', async (e) => {
+      const i = Number(e.target.dataset.index);
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const statusEl = el.querySelector(`[data-status-index="${i}"]`);
+      statusEl.textContent = 'Uploading…';
+      statusEl.className = 'upload-status';
+
+      const formData = new FormData();
+      formData.append('certificate', file);
+
+      try {
+        const res = await fetch('/api/upload-certificate', {
+          method: 'POST',
+          headers: { 'X-Admin-Password': adminPassword },
+          body: formData
+        });
+        const data = await res.json();
+        if (res.ok) {
+          content.certificates[i].image = data.filename;
+          statusEl.textContent = 'Uploaded ✓';
+          statusEl.classList.add('success');
+          renderCertificates();
+        } else {
+          statusEl.textContent = data.error || 'Upload failed.';
+          statusEl.classList.add('error');
+        }
+      } catch (err) {
+        statusEl.textContent = 'Network error during upload.';
+        statusEl.classList.add('error');
+      }
+    });
+  });
+}
+
+document.getElementById('addCertificate').addEventListener('click', () => {
+  content.certificates.push({ image: '', title: 'New Certificate', issuer: 'Issuing Organization' });
+  renderCertificates();
+});
+
 
 // ---------- Save ----------
 saveBtn.addEventListener('click', async () => {
