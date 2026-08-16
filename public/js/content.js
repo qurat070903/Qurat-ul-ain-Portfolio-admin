@@ -112,10 +112,6 @@ function renderContent(data) {
         <div><span class="label">EMAIL</span><span class="value">${escapeHtml(c.email)}</span></div>
         <span class="arrow">→</span>
       </a>
-      <a class="contact-link" href="tel:${escapeHtml(c.phone.replace(/\s+/g, ''))}">
-        <div><span class="label">PHONE</span><span class="value">${escapeHtml(c.phone)}</span></div>
-        <span class="arrow">→</span>
-      </a>
       <a class="contact-link" href="https://linkedin.com/in/${escapeHtml(c.linkedin)}" target="_blank" rel="noopener">
         <div><span class="label">LINKEDIN</span><span class="value">${escapeHtml(c.linkedin)}</span></div>
         <span class="arrow">→</span>

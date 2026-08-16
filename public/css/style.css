@@ -119,7 +119,7 @@ nav{ display:flex; align-items:center; justify-content:space-between; padding:16
 .hero-photo-wrap{
   position:relative;
   width:min(480px, 85vw);
-  margin:-180px auto 20px;
+  margin:-140px auto 20px;
 }
 .hero-photo{
   width:100%;
