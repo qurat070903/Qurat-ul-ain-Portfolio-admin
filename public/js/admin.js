@@ -37,7 +37,8 @@ async function attemptLogin() {
       loginError.textContent = 'Incorrect password.';
     }
   } catch (err) {
-    loginError.textContent = 'Network error — please try again.';
+    console.error('Login/load error:', err);
+    loginError.textContent = 'Something went wrong loading the admin panel. Check the browser console for details.';
   } finally {
     loginBtn.disabled = false;
     loginBtn.textContent = 'Unlock';
@@ -47,6 +48,17 @@ async function attemptLogin() {
 async function loadAndShow() {
   const res = await fetch('/api/content');
   content = await res.json();
+
+  // Safety net: make sure every expected section exists, even on older content.json files
+  content.hero = content.hero || { eyebrow: '', titleLine1: '', titleLine2: '', subtext: '' };
+  content.about = content.about || { paragraph1: '', paragraph2: '', stats: [] };
+  content.about.stats = content.about.stats || [];
+  content.experience = content.experience || [];
+  content.academics = content.academics || [];
+  content.leadership = content.leadership || [];
+  content.certificates = content.certificates || [];
+  content.contact = content.contact || { email: '', phone: '', linkedin: '', github: '' };
+
   populateForm();
   loginBox.style.display = 'none';
   adminApp.style.display = 'block';
@@ -60,6 +72,7 @@ async function loadAndShow() {
     try {
       await loadAndShow();
     } catch (err) {
+      console.error('Auto-login failed:', err);
       sessionStorage.removeItem('adminPassword');
     }
   }
@@ -67,18 +80,18 @@ async function loadAndShow() {
 
 // ---------- Populate simple fields ----------
 function populateForm() {
-  document.getElementById('f_heroEyebrow').value = content.hero.eyebrow;
-  document.getElementById('f_heroTitle1').value = content.hero.titleLine1;
-  document.getElementById('f_heroTitle2').value = content.hero.titleLine2;
-  document.getElementById('f_heroSub').value = content.hero.subtext;
+  document.getElementById('f_heroEyebrow').value = content.hero.eyebrow || '';
+  document.getElementById('f_heroTitle1').value = content.hero.titleLine1 || '';
+  document.getElementById('f_heroTitle2').value = content.hero.titleLine2 || '';
+  document.getElementById('f_heroSub').value = content.hero.subtext || '';
 
-  document.getElementById('f_aboutP1').value = content.about.paragraph1;
-  document.getElementById('f_aboutP2').value = content.about.paragraph2;
+  document.getElementById('f_aboutP1').value = content.about.paragraph1 || '';
+  document.getElementById('f_aboutP2').value = content.about.paragraph2 || '';
 
-  document.getElementById('f_email').value = content.contact.email;
-  document.getElementById('f_phone').value = content.contact.phone;
-  document.getElementById('f_linkedin').value = content.contact.linkedin;
-  document.getElementById('f_github').value = content.contact.github;
+  document.getElementById('f_email').value = content.contact.email || '';
+  document.getElementById('f_phone').value = content.contact.phone || '';
+  document.getElementById('f_linkedin').value = content.contact.linkedin || '';
+  document.getElementById('f_github').value = content.contact.github || '';
 
   renderStats();
   renderRepeatable('experience', 'experienceRepeat', true);
@@ -215,6 +228,10 @@ document.getElementById('addLeadership').addEventListener('click', () => {
 // ---------- Certificates ----------
 function renderCertificates() {
   const el = document.getElementById('certificatesRepeat');
+  if (!el) {
+    console.error('certificatesRepeat container not found in admin.html');
+    return;
+  }
   const certs = content.certificates || [];
 
   el.innerHTML = certs.map((c, i) => `
@@ -301,10 +318,8 @@ document.getElementById('addCertificate').addEventListener('click', () => {
   renderCertificates();
 });
 
-
 // ---------- Save ----------
 saveBtn.addEventListener('click', async () => {
-  // Pull simple fields back into content before saving
   content.hero.eyebrow = document.getElementById('f_heroEyebrow').value;
   content.hero.titleLine1 = document.getElementById('f_heroTitle1').value;
   content.hero.titleLine2 = document.getElementById('f_heroTitle2').value;

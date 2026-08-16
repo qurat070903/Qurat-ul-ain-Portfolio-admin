@@ -31,7 +31,6 @@ function renderTimelineItems(list) {
 }
 
 function renderContent(data) {
-  // Hero
   const heroEyebrow = document.getElementById('heroEyebrow');
   const heroTitle1 = document.getElementById('heroTitle1');
   const heroTitle2 = document.getElementById('heroTitle2');
@@ -41,14 +40,13 @@ function renderContent(data) {
   if (heroTitle2) heroTitle2.textContent = data.hero.titleLine2;
   if (heroSub) heroSub.textContent = data.hero.subtext;
 
-  // About
   const aboutP1 = document.getElementById('aboutP1');
   const aboutP2 = document.getElementById('aboutP2');
   const aboutStats = document.getElementById('aboutStats');
   if (aboutP1) aboutP1.textContent = data.about.paragraph1;
   if (aboutP2) aboutP2.textContent = data.about.paragraph2;
   if (aboutStats) {
-    aboutStats.innerHTML = data.about.stats.map(s => `
+    aboutStats.innerHTML = (data.about.stats || []).map(s => `
       <div>
         <div class="num">${escapeHtml(s.num)}</div>
         <div class="label">${escapeHtml(s.label)}</div>
@@ -56,15 +54,12 @@ function renderContent(data) {
     `).join('');
   }
 
-  // Experience
   const experienceList = document.getElementById('experienceList');
   if (experienceList) experienceList.innerHTML = renderTimelineItems(data.experience || []);
 
-  // Academics
   const academicsList = document.getElementById('academicsList');
   if (academicsList) academicsList.innerHTML = renderTimelineItems(data.academics || []);
 
-  // Leadership (simpler row layout, not the timeline)
   const leadershipList = document.getElementById('leadershipList');
   if (leadershipList) {
     leadershipList.innerHTML = (data.leadership || []).map(item => {
@@ -82,7 +77,6 @@ function renderContent(data) {
     }).join('');
   }
 
-  // Certificates
   const certGrid = document.getElementById('certGrid');
   if (certGrid) {
     const certs = data.certificates || [];
@@ -102,14 +96,17 @@ function renderContent(data) {
       `).join('');
     }
   }
-  
-  // Contact
+
   const contactLinks = document.getElementById('contactLinks');
   if (contactLinks) {
     const c = data.contact;
     contactLinks.innerHTML = `
       <a class="contact-link" href="mailto:${escapeHtml(c.email)}">
         <div><span class="label">EMAIL</span><span class="value">${escapeHtml(c.email)}</span></div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="contact-link" href="tel:${escapeHtml((c.phone || '').replace(/\s+/g, ''))}">
+        <div><span class="label">PHONE</span><span class="value">${escapeHtml(c.phone)}</span></div>
         <span class="arrow">→</span>
       </a>
       <a class="contact-link" href="https://linkedin.com/in/${escapeHtml(c.linkedin)}" target="_blank" rel="noopener">
@@ -123,7 +120,6 @@ function renderContent(data) {
     `;
   }
 
-  // Re-run scroll reveal for anything newly injected
   if (typeof window.initReveal === 'function') {
     window.initReveal();
   }

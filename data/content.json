@@ -9,14 +9,8 @@
     "paragraph1": "I'm a Software Engineering student at COMSATS University Islamabad, Wah Campus. I build across mobile, web, and machine learning, from Flutter apps to Laravel backends to AI-driven features.",
     "paragraph2": "I enjoy exploring ideas, solving problems, and transforming concepts into clear, functional outcomes. Consistency, attention to detail, and continuous learning are what I try to bring to every project.",
     "stats": [
-      {
-        "num": "5+",
-        "label": "PROJECTS BUILT"
-      },
-      {
-        "num": "3",
-        "label": "INTERNSHIPS"
-      }
+      { "num": "5+", "label": "PROJECTS BUILT" },
+      { "num": "3", "label": "INTERNSHIPS" }
     ]
   },
   "experience": [
@@ -55,56 +49,16 @@
     }
   ],
   "academics": [
-    {
-      "role": "Matriculation, Science",
-      "org": "Quality School",
-      "dateStart": "2018",
-      "dateEnd": "2020",
-      "current": false
-    },
-    {
-      "role": "Intermediate, Pre-Engineering",
-      "org": "Quality College",
-      "dateStart": "2020",
-      "dateEnd": "2022",
-      "current": false
-    },
-    {
-      "role": "BS Software Engineering",
-      "org": "COMSATS University Islamabad",
-      "dateStart": "2023",
-      "dateEnd": "2027",
-      "current": true
-    }
+    { "role": "Matriculation, Science", "org": "Quality School", "dateStart": "2018", "dateEnd": "2020", "current": false },
+    { "role": "Intermediate, Pre-Engineering", "org": "Quality College", "dateStart": "2020", "dateEnd": "2022", "current": false },
+    { "role": "BS Software Engineering", "org": "COMSATS University Islamabad", "dateStart": "2023", "dateEnd": "2027", "current": true }
   ],
   "leadership": [
-    {
-      "role": "Treasurer",
-      "org": "ACM CUI Wah Chapter",
-      "dateStart": "JUN 2026",
-      "dateEnd": "",
-      "current": true
-    },
-    {
-      "role": "Coordinator",
-      "org": "ACM Decor Team",
-      "dateStart": "DEC 2025",
-      "dateEnd": "MAY 2026",
-      "current": false
-    },
-    {
-      "role": "Team Lead",
-      "org": "ACM Decor Team",
-      "dateStart": "MAY 2025",
-      "dateEnd": "DEC 2025",
-      "current": false
-    }
-
-    
+    { "role": "Treasurer", "org": "ACM CUI Wah Chapter", "dateStart": "JUN 2026", "dateEnd": "", "current": true },
+    { "role": "Coordinator", "org": "ACM Decor Team", "dateStart": "DEC 2025", "dateEnd": "MAY 2026", "current": false },
+    { "role": "Team Lead", "org": "ACM Decor Team", "dateStart": "MAY 2025", "dateEnd": "DEC 2025", "current": false }
   ],
-  
-"certificates": [],
-
+  "certificates": [],
   "contact": {
     "email": "qurat070903@gmail.com",
     "phone": "+92 309 0146229",
