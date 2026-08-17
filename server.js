@@ -8,6 +8,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const CONTENT_PATH = path.join(__dirname, 'data', 'content.json');
 const CERT_DIR = path.join(__dirname, 'public', 'images', 'certificates');
+if (!require('fs').existsSync(CERT_DIR)) {
+  require('fs').mkdirSync(CERT_DIR, { recursive: true });
+}
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'changeme';
 
 app.use(express.json({ limit: '1mb' }));
