@@ -89,7 +89,6 @@ function populateForm() {
   document.getElementById('f_aboutP2').value = content.about.paragraph2 || '';
 
   document.getElementById('f_email').value = content.contact.email || '';
-  document.getElementById('f_phone').value = content.contact.phone || '';
   document.getElementById('f_linkedin').value = content.contact.linkedin || '';
   document.getElementById('f_github').value = content.contact.github || '';
 
@@ -329,7 +328,6 @@ saveBtn.addEventListener('click', async () => {
   content.about.paragraph2 = document.getElementById('f_aboutP2').value;
 
   content.contact.email = document.getElementById('f_email').value;
-  content.contact.phone = document.getElementById('f_phone').value;
   content.contact.linkedin = document.getElementById('f_linkedin').value;
   content.contact.github = document.getElementById('f_github').value;
 
