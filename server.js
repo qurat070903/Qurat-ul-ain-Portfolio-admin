@@ -27,6 +27,8 @@ const storage = multer.diskStorage({
   }
 });
 
+const items = document.querySelectorAll('#academics .tl-item');
+
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
 const upload = multer({
   storage,

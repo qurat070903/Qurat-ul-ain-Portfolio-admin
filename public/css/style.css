@@ -223,6 +223,124 @@ section{ padding:96px 0; }
 .tl-content ul{ padding-left:18px; color:var(--ink-soft); font-size:14.5px; }
 .tl-content li{ margin-bottom:5px; }
 
+
+/* ===== Academic Timeline Cards (scoped to #academics only) ===== */
+#academics .timeline {
+  position: relative;
+}
+
+#academics .tl-item {
+  display: flex;
+  gap: 24px;
+  position: relative;
+  padding-bottom: 32px;
+
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+#academics .tl-item.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#academics .tl-item:nth-child(1) { transition-delay: 0s; }
+#academics .tl-item:nth-child(2) { transition-delay: 0.15s; }
+#academics .tl-item:nth-child(3) { transition-delay: 0.3s; }
+#academics .tl-item:nth-child(4) { transition-delay: 0.45s; }
+#academics .tl-item:nth-child(5) { transition-delay: 0.6s; }
+
+#academics .tl-item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 27px;
+  top: 56px;
+  bottom: -32px;
+  width: 1px;
+  background: var(--line-light, #e5d9d9);
+}
+
+#academics .tl-badge {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid #7a1f2b;
+  color: #7a1f2b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  background: #fdf6f2;
+  z-index: 1;
+}
+
+#academics .tl-item.current .tl-badge {
+  background: #7a1f2b;
+  color: #fff;
+}
+
+#academics .tl-content {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid rgba(122, 31, 43, 0.12);
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+#academics .tl-content:hover {
+  box-shadow: 0 10px 24px rgba(122, 31, 43, 0.12);
+  transform: translateY(-3px);
+  border-color: rgba(122, 31, 43, 0.25);
+}
+
+#academics .tl-item.current .tl-content {
+  border-color: rgba(122, 31, 43, 0.35);
+  box-shadow: 0 6px 18px rgba(122, 31, 43, 0.1);
+}
+
+#academics .tl-role {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#academics .tl-org {
+  color: #7a1f2b;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+#academics .tl-date {
+  color: #9a9a9a;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  margin-top: 6px;
+}
+
+#academics .tl-badge-current {
+  background: rgba(122, 31, 43, 0.1);
+  color: #7a1f2b;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 560px) {
+  #academics .tl-item { gap: 14px; }
+  #academics .tl-content { padding: 16px 18px; }
+}
+
 /* ---------- Leadership ---------- */
 .leadership-list{ display:flex; flex-direction:column; gap:14px; max-width:760px; margin:0 auto; }
 .leadership-item{
