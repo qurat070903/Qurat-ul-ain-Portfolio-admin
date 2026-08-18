@@ -11,6 +11,7 @@ if (menuToggle && navLinks) {
   }));
 }
 
+
 let revealObserver;
 window.initReveal = function initReveal() {
   if (!revealObserver) {
@@ -27,3 +28,20 @@ window.initReveal = function initReveal() {
 };
 
 window.initReveal();
+
+// Academic timeline scroll animation
+const items = document.querySelectorAll('#academics .tl-item');
+
+const tlObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      tlObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.2,
+  rootMargin: '0px 0px -50px 0px'
+});
+
+items.forEach(item => tlObserver.observe(item));
