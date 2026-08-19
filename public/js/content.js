@@ -135,3 +135,34 @@ async function loadContent() {
 }
 
 document.addEventListener('DOMContentLoaded', loadContent);
+
+"certificates": [
+  {
+    "image": "Certificate-1.jpg",
+    "title": "PROMOTION CERTIFICATE",
+    "issuer": "ACM"
+  },
+  {
+    "image": "Certificate-2.jpg",
+    "title": "INTERNSHIP CERTIFICATE",
+    "issuer": "MINISTRY OF DEFENCE"
+  },
+
+  {
+    "image": "Certificate-3.jpg",
+    "title": "APPRECIATION CERTIFICATE AS DECOR LEAD",
+    "issuer": "ACM"
+  },
+
+  {
+    "image": "Certificate-4.jpg",
+    "title": "APPRECIATION CERTIFICATE",
+    "issuer": "COMSATS HERITAGE SOCIETY"
+  },
+
+  {
+    "image": "Certificate-5.jpg",
+    "title": "APPRECIATION CERTIFICATE",
+    "issuer": "ACM"
+  }
+]

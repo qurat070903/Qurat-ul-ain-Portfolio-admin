@@ -227,10 +227,6 @@ document.getElementById('addLeadership').addEventListener('click', () => {
 // ---------- Certificates ----------
 function renderCertificates() {
   const el = document.getElementById('certificatesRepeat');
-  if (!el) {
-    console.error('certificatesRepeat container not found in admin.html');
-    return;
-  }
   const certs = content.certificates || [];
 
   el.innerHTML = certs.map((c, i) => `
