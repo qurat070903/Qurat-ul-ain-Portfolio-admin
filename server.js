@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs').promises;
 const multer = require('multer');
-
+const { generateCVBuffer } = require('./cv-generator');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const CONTENT_PATH = path.join(__dirname, 'data', 'content.json');
@@ -62,6 +62,21 @@ app.get('/api/content', async (req, res) => {
   } catch (err) {
     console.error('Failed to read content.json:', err);
     res.status(500).json({ error: 'Could not load site content.' });
+  }
+});
+
+app.get('/api/cv', async (req, res) => {
+  try {
+    const raw = await fs.readFile(CONTENT_PATH, 'utf-8');
+    const content = JSON.parse(raw);
+    const pdfBuffer = await generateCVBuffer(content);
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename="Qurat_Ul_Ain_CV.pdf"');
+    res.send(pdfBuffer);
+  } catch (err) {
+    console.error('Failed to generate CV:', err);
+    res.status(500).json({ error: 'Could not generate CV right now. Please try again.' });
   }
 });
 

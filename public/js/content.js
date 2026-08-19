@@ -116,9 +116,9 @@ function renderContent(data) {
     `;
   }
 
-  if (typeof window.initReveal === 'function') {
-    window.initReveal();
-  }
+ if (typeof window.initTimelineReveal === 'function') {
+  window.initTimelineReveal();
+}
 }
 
 async function loadContent() {
