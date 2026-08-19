@@ -60,30 +60,30 @@
   ],
   "certificates": [
   {
-    "image": "Certificate-1.jpg",
+    "image": "Certificate-1.jpeg",
     "title": "PROMOTION CERTIFICATE",
     "issuer": "ACM"
   },
   {
-    "image": "Certificate-2.jpg",
+    "image": "Certificate-2.jpeg",
     "title": "INTERNSHIP CERTIFICATE",
     "issuer": "MINISTRY OF DEFENCE"
   },
 
   {
-    "image": "Certificate-3.jpg",
+    "image": "Certificate-3.jpeg",
     "title": "APPRECIATION CERTIFICATE AS DECOR LEAD",
     "issuer": "ACM"
   },
 
   {
-    "image": "Certificate-4.jpg",
+    "image": "Certificate-4.jpeg",
     "title": "APPRECIATION CERTIFICATE",
     "issuer": "COMSATS HERITAGE SOCIETY"
   },
 
   {
-    "image": "Certificate-5.jpg",
+    "image": "Certificate-5.jpeg",
     "title": "APPRECIATION CERTIFICATE",
     "issuer": "ACM"
   }
