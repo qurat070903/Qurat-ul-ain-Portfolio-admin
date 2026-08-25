@@ -234,9 +234,13 @@ function renderCertificates() {
       <button type="button" class="btn-small btn-remove" data-action="remove-cert" data-index="${i}">Remove</button>
       <div class="item-num">#${i + 1}</div>
       ${c.image
-        ? `<img class="cert-preview" src="images/certificates/${escapeAttr(c.image)}" alt="">`
-        : `<div class="cert-preview-empty">No image uploaded yet</div>`
-      }
+  ? `<img class="cert-preview" src="${escapeAttr(
+      c.image.startsWith('http')
+        ? c.image
+        : `images/certificates/${c.image}`
+    )}" alt="">`
+  : `<div class="cert-preview-empty">No image uploaded yet</div>`
+}
       <div class="field">
         <label>Certificate image</label>
         <input type="file" accept="image/png,image/jpeg,image/webp,image/gif" data-action="upload-cert" data-index="${i}">
@@ -292,7 +296,8 @@ function renderCertificates() {
         });
         const data = await res.json();
         if (res.ok) {
-          content.certificates[i].image = data.filename;
+          content.certificates[i].image =
+  data.url || data.filename;
           statusEl.textContent = 'Uploaded ✓';
           statusEl.classList.add('success');
           renderCertificates();
