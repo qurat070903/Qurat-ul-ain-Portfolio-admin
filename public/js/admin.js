@@ -296,8 +296,7 @@ function renderCertificates() {
         });
         const data = await res.json();
         if (res.ok) {
-          content.certificates[i].image =
-  data.url || data.filename;
+          content.certificates[i].image = data.url || data.filename;
           statusEl.textContent = 'Uploaded ✓';
           statusEl.classList.add('success');
           renderCertificates();

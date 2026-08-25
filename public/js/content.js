@@ -86,7 +86,11 @@ function renderContent(data) {
       certGrid.innerHTML = certs.map(c => `
         <div class="cert-card">
           <div class="cert-thumb">
-            <img src="images/certificates/${escapeHtml(c.image)}" alt="${escapeHtml(c.title)}">
+            <img src="${escapeHtml(
+  c.image.startsWith('http')
+    ? c.image
+    : `images/certificates/${c.image}`
+)}" alt="${escapeHtml(c.title)}">
           </div>
           <div class="cert-body">
             <h3>${escapeHtml(c.title)}</h3>
